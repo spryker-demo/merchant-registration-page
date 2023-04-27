@@ -1,0 +1,116 @@
+{% extends template('page-layout-main') %}
+
+{% define data = {
+    title: 'merchant.register-page.title' | trans,
+    forms: {
+        register: _view.merchantRegistrationForm,
+    },
+} %}
+
+{% block content %}
+    <div class="grid grid--center spacing-bottom spacing-bottom--big">
+        <div class="col col--sm-12 col--lg-10">
+            {% embed molecule('form') with {
+                modifiers: ['error-under-field'],
+                data: {
+                    titleClass: 'spacing-bottom--big title--h3',
+                    form: data.forms.register,
+                    options: {
+                        action: url('merchant/register'),
+                    },
+                    layout: {
+                        company_name: 'col col--sm-12 col--lg-6',
+                        registration_number: 'col col--sm-12 col--lg-6',
+                        address1: 'col col--sm-12 col--md-8 col--lg-8',
+                        address2: 'col col--sm-12 col--md-4 col--lg-4',
+                        zip_code: 'col col--sm-6 col--lg-4',
+                        city: 'col col--sm-6 col--lg-4',
+                        iso2_code: 'col col--sm-6 col--lg-4',
+                        contact_person_title: 'col col--sm-6 col--lg-4',
+                        contact_person_first_name: 'col col--sm-6 col--lg-4',
+                        contact_person_last_name: 'col col--sm-6 col--lg-4',
+                        email: 'col col--sm-6',
+                        contact_person_phone: 'col col--sm-6',
+                        contact_person_role: 'col col--sm-6',
+                        password: 'col col--sm-6',
+                    },
+                    submit: {
+                        enable: false,
+                        text: 'forms.submit.register' | trans,
+                    },
+                },
+            } only %}
+                {% block fields %}
+                    <div class="box box--dark spacing-bottom--biggest">
+                        <div class="grid grid--center spacing-y--biggest">
+                            <div class="col col--sm-12 col--md-10">
+                                <div class="form__field col col--sm-12">
+                                    <h2 class="title--h3">{{ 'merchant.register-page.company-title' | trans }}</h2>
+                                    <p>{{ 'merchant.register-page.company-text' | trans }}</p>
+                                </div>
+                                {% set companyFilds = ['company_name', 'registration_number', 'address1', 'address2', 'zip_code', 'city', 'iso2_code'] %}
+                                {% for fieldName in companyFilds %}
+                                    {% set field = attribute(data.form.children, fieldName) %}
+
+                                    {% if not field.isRendered %}
+                                        {% set fieldLayoutClass = 'col col--sm-12' %}
+
+                                        {% if fieldName in data.layout | keys %}
+                                            {% set fieldLayoutClass = attribute(data.layout, fieldName) %}
+                                        {% endif %}
+
+                                        {{ block('field') }}
+                                    {% endif %}
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="box box--dark">
+                        <div class="grid grid--center spacing-y--biggest">
+                            <div class="col col--sm-12 col--md-10">
+                                <div class="form__field col col--sm-12">
+                                    <h2 class="title--h3">{{ 'merchant.register-page.account-title' | trans }}</h2>
+                                    <p>{{ 'merchant.register-page.account-text' | trans }}</p>
+                                </div>
+                                {% set accountFilds = ['contact_person_title', 'contact_person_first_name', 'contact_person_last_name', 'email', 'contact_person_phone', 'contact_person_role'] %}
+                                {% for fieldName in accountFilds %}
+                                    {% set field = attribute(data.form.children, fieldName) %}
+
+                                    {% if not field.isRendered %}
+                                        {% set fieldLayoutClass = 'col col--sm-12' %}
+
+                                        {% if fieldName in data.layout | keys %}
+                                            {% set fieldLayoutClass = attribute(data.layout, fieldName) %}
+                                        {% endif %}
+
+                                        {{ block('field') }}
+                                    {% endif %}
+                                {% endfor %}
+
+                                <div style="clear: both;">
+                                    {{ parent() }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endblock %}
+
+                {% block field %}
+                    {% if fieldName == 'accept_terms' %}
+                        <div class="grid grid--middle grid--justify col col--sm-12">
+                            <div class="col col--sm-12 col--lg-7">
+                                {{ parent() }}
+                            </div>
+                            <div class="col col--sm-12 col--lg-5 {{ config.name }}__field text-right">
+                                <button class="button button--wider button--medium button--expand-mobile">{{ data.submit.text }}</button>
+                            </div>
+                        </div>
+                    {% else %}
+                        {{ parent() }}
+                    {% endif %}
+                {% endblock %}
+            {% endembed %}
+        </div>
+    </div>
+{% endblock %}
