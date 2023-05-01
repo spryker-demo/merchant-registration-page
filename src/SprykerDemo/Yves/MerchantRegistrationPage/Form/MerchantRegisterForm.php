@@ -8,8 +8,6 @@
 namespace SprykerDemo\Yves\MerchantRegistrationPage\Form;
 
 use Spryker\Yves\Kernel\Form\AbstractType;
-use SprykerDemo\Yves\MerchantRegistrationPage\Form\Validator\Constraints\CompanyNameUniqueConstraint;
-use SprykerDemo\Yves\MerchantRegistrationPage\Form\Validator\Constraints\MerchantEmailUniqueConstraint;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
@@ -319,9 +317,6 @@ class MerchantRegisterForm extends AbstractType
             new NotBlank(),
             new Email(),
             new Length(['max' => 255]),
-            new MerchantEmailUniqueConstraint([
-                MerchantEmailUniqueConstraint::OPTION_MERCHANT_REGISTRATION_CLIENT => $this->getFactory()->getMerchantRegistrationClient(),
-            ]),
         ];
     }
 
@@ -337,9 +332,6 @@ class MerchantRegisterForm extends AbstractType
             'required' => true,
             'constraints' => [
                 $this->createNotBlankConstraint(),
-                new CompanyNameUniqueConstraint([
-                    CompanyNameUniqueConstraint::OPTION_MERCHANT_REGISTRATION_CLIENT => $this->getFactory()->getMerchantRegistrationClient(),
-                ]),
             ],
         ]);
 
