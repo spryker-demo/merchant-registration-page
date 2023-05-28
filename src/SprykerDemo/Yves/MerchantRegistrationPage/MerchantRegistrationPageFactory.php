@@ -15,9 +15,9 @@ use SprykerDemo\Yves\MerchantRegistrationPage\Form\FormFactory;
 class MerchantRegistrationPageFactory extends AbstractFactory
 {
     /**
-     * @return \Spryker\Yves\Kernel\AbstractFactory
+     * @return \SprykerDemo\Yves\MerchantRegistrationPage\Form\FormFactory
      */
-    public function createMerchantFormFactory(): AbstractFactory
+    public function createMerchantFormFactory(): FormFactory
     {
         return new FormFactory();
     }

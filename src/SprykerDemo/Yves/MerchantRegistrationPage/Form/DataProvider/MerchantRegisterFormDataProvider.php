@@ -40,7 +40,7 @@ class MerchantRegisterFormDataProvider
     }
 
     /**
-     * @return array
+     * @return array<string, mixed>
      */
     public function getOptions(): array
     {
@@ -50,7 +50,7 @@ class MerchantRegisterFormDataProvider
     }
 
     /**
-     * @return array
+     * @return array<mixed, mixed>
      */
     protected function getAvailableCountries(): array
     {

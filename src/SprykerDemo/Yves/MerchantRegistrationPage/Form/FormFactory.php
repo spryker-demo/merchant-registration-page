@@ -28,7 +28,7 @@ class FormFactory extends AbstractFactory
 
     /**
      * @param \Generated\Shared\Transfer\MerchantRegistrationFormDataTransfer $data
-     * @param array $formOptions
+     * @param array<string, mixed> $formOptions
      *
      * @return \Symfony\Component\Form\FormInterface
      */

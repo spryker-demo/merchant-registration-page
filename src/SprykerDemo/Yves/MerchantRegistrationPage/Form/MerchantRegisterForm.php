@@ -133,7 +133,7 @@ class MerchantRegisterForm extends AbstractType
     public const VALIDATION_ZIP_CODE_MESSAGE = 'validation.zip_code';
 
     /**
-     * @var array
+     * @var array<string, string>
      */
     protected const SALUTATION_CHOICES = [
         'Ms' => 'Ms',
@@ -167,7 +167,7 @@ class MerchantRegisterForm extends AbstractType
 
     /**
      * @param \Symfony\Component\Form\FormBuilderInterface $builder
-     * @param array $options
+     * @param array<string, mixed> $options
      *
      * @return void
      */
@@ -340,7 +340,7 @@ class MerchantRegisterForm extends AbstractType
 
     /**
      * @param \Symfony\Component\Form\FormBuilderInterface $builder
-     * @param array $options
+     * @param array<string, mixed> $options
      *
      * @return $this
      */
@@ -360,7 +360,7 @@ class MerchantRegisterForm extends AbstractType
 
     /**
      * @param \Symfony\Component\Form\FormBuilderInterface $builder
-     * @param array $options
+     * @param array<string, mixed> $options
      *
      * @return $this
      */
@@ -380,7 +380,7 @@ class MerchantRegisterForm extends AbstractType
 
     /**
      * @param \Symfony\Component\Form\FormBuilderInterface $builder
-     * @param array $options
+     * @param array<string, mixed> $options
      *
      * @return $this
      */
@@ -400,7 +400,7 @@ class MerchantRegisterForm extends AbstractType
 
     /**
      * @param \Symfony\Component\Form\FormBuilderInterface $builder
-     * @param array $options
+     * @param array<string, mixed> $options
      *
      * @return $this
      */
@@ -421,7 +421,7 @@ class MerchantRegisterForm extends AbstractType
 
     /**
      * @param \Symfony\Component\Form\FormBuilderInterface $builder
-     * @param array $options
+     * @param array<string, mixed> $options
      *
      * @return $this
      */
@@ -460,11 +460,10 @@ class MerchantRegisterForm extends AbstractType
 
     /**
      * @param \Symfony\Component\Form\FormBuilderInterface $builder
-     * @param array $choices
      *
      * @return $this
      */
-    protected function addContactPersonTitleField(FormBuilderInterface $builder, array $choices = [])
+    protected function addContactPersonTitleField(FormBuilderInterface $builder)
     {
         $builder->add(static::FIELD_CONTACT_PERSON_TITLE, ChoiceType::class, [
             'choices' => array_flip(static::SALUTATION_CHOICES),
@@ -515,7 +514,7 @@ class MerchantRegisterForm extends AbstractType
     }
 
     /**
-     * @param array $options
+     * @param array<string, mixed> $options
      *
      * @return \Symfony\Component\Validator\Constraints\Length
      */
@@ -529,7 +528,7 @@ class MerchantRegisterForm extends AbstractType
     }
 
     /**
-     * @param array $options
+     * @param array<string, mixed> $options
      *
      * @return \Symfony\Component\Validator\Constraints\Length
      */
@@ -545,7 +544,7 @@ class MerchantRegisterForm extends AbstractType
     }
 
     /**
-     * @param array $options
+     * @param array<string, mixed> $options
      *
      * @return \Symfony\Component\Validator\Constraints\Regex
      */
@@ -559,7 +558,7 @@ class MerchantRegisterForm extends AbstractType
     }
 
     /**
-     * @param array $options
+     * @param array<string, mixed> $options
      *
      * @return \Symfony\Component\Validator\Constraints\Regex
      */
@@ -575,7 +574,7 @@ class MerchantRegisterForm extends AbstractType
     }
 
     /**
-     * @param array $options
+     * @param array<string, mixed> $options
      *
      * @return string
      */

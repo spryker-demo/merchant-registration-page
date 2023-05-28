@@ -34,7 +34,7 @@ class MerchantRegisterController extends AbstractController
     /**
      * @param \Symfony\Component\HttpFoundation\Request $request
      *
-     * @return \Spryker\Yves\Kernel\View\View|\Symfony\Component\HttpFoundation\RedirectResponse|array
+     * @return \Spryker\Yves\Kernel\View\View|\Symfony\Component\HttpFoundation\RedirectResponse|array<string, mixed>
      */
     public function registerAction(Request $request)
     {
@@ -50,7 +50,7 @@ class MerchantRegisterController extends AbstractController
     /**
      * @param \Symfony\Component\HttpFoundation\Request $request
      *
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse|array
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|array<string, mixed>
      */
     protected function executeRegisterAction(Request $request)
     {
@@ -77,7 +77,9 @@ class MerchantRegisterController extends AbstractController
             }
 
             foreach ($merchantResponseTransfer->getErrors() as $responseMessage) {
-                $this->addErrorMessage($responseMessage->getMessage());
+                if ($responseMessage->getMessage()) {
+                    $this->addErrorMessage($responseMessage->getMessage());
+                }
             }
         }
 
@@ -100,7 +102,9 @@ class MerchantRegisterController extends AbstractController
         }
 
         foreach ($merchantResponseTransfer->getErrors() as $responseMessageTransfer) {
-            $this->addErrorMessage($responseMessageTransfer->getMessage());
+            if ($responseMessageTransfer->getMessage()) {
+                $this->addErrorMessage($responseMessageTransfer->getMessage());
+            }
         }
     }
 
