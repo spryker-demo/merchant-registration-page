@@ -34,7 +34,7 @@ class MerchantRegistrationPageRouterProviderPlugin extends AbstractRouteProvider
      */
     protected function addMerchantRegisterRoute(RouteCollection $routeCollection): RouteCollection
     {
-        $route = $this->buildRoute('/merchant/register', 'MerchantRegistrationPage', 'MerchantRegister', 'registerAction');
+        $route = $this->buildRoute('/merchant/register', 'MerchantRegistrationPage', 'MerchantRegistration', 'registerAction');
         $routeCollection->add(static::ROUTE_NAME_MERCHANT_REGISTER, $route);
 
         return $routeCollection;

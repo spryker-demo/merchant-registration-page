@@ -19,7 +19,7 @@ use Symfony\Component\HttpFoundation\Request;
 /**
  * @method \SprykerDemo\Yves\MerchantRegistrationPage\MerchantRegistrationPageFactory getFactory()
  */
-class MerchantRegisterController extends AbstractController
+class MerchantRegistrationController extends AbstractController
 {
     /**
      * @var string
@@ -44,7 +44,7 @@ class MerchantRegisterController extends AbstractController
             return $response;
         }
 
-        return $this->view($response, [], '@MerchantRegistrationPage/views/merchant-register/merchant-register.twig');
+        return $this->view($response, [], '@MerchantRegistrationPage/views/merchant-registration/merchant-registration.twig');
     }
 
     /**
