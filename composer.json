@@ -1,7 +1,7 @@
 {
     "name": "spryker-demo/merchant-registration-page",
     "type": "library",
-    "description": "Merchant registrationPage module",
+    "description": "Merchant registration page module",
     "license": "proprietary",
     "require": {
         "php": ">=8.0",
