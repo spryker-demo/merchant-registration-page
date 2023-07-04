@@ -24,7 +24,7 @@ class MerchantRegistrationController extends AbstractController
     /**
      * @var string
      */
-    protected const COMPANY_AUTHORIZATION_SUCCESS = 'company.account.authorization.success';
+    protected const MERCHANT_AUTHORIZATION_SUCCESS = 'merchant.account.authorization.success';
 
     /**
      * @var string

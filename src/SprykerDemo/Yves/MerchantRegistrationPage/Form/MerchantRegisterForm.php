@@ -199,7 +199,7 @@ class MerchantRegisterForm extends AbstractType
     protected function addAcceptTermsField(FormBuilderInterface $builder)
     {
         $builder->add(static::FIELD_ACCEPT_TERMS, CheckboxType::class, [
-            'label' => 'forms.accept_terms.merchant',
+            'label' => 'merchant.forms.accept_terms',
             'mapped' => false,
             'required' => true,
             'constraints' => [
