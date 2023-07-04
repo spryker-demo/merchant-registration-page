@@ -96,7 +96,7 @@ class MerchantRegistrationController extends AbstractController
     protected function addSuccessMessages(MerchantResponseTransfer $merchantResponseTransfer): void
     {
         if (!$merchantResponseTransfer->getErrors()->count()) {
-            $this->addSuccessMessage(static::COMPANY_AUTHORIZATION_SUCCESS);
+            $this->addSuccessMessage(static::MERCHANT_AUTHORIZATION_SUCCESS);
 
             return;
         }
