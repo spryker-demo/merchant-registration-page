@@ -129,11 +129,11 @@ class MerchantRegistrationController extends AbstractController
     protected function getMerchantProfileTransfer(MerchantRegistrationFormDataTransfer $merchantRegistrationFormDataTransfer): MerchantProfileTransfer
     {
         $merchantProfileTransfer = new MerchantProfileTransfer();
-        $merchantProfileTransfer->setContactPersonFirstName($merchantRegistrationFormDataTransfer->getcontactPersonFirstName());
-        $merchantProfileTransfer->setContactPersonLastName($merchantRegistrationFormDataTransfer->getcontactPersonLastName());
-        $merchantProfileTransfer->setContactPersonPhone($merchantRegistrationFormDataTransfer->getcontactPersonPhone());
-        $merchantProfileTransfer->setContactPersonRole($merchantRegistrationFormDataTransfer->getcontactPersonRole());
-        $merchantProfileTransfer->setContactPersonTitle($merchantRegistrationFormDataTransfer->getcontactPersonTitle());
+        $merchantProfileTransfer->setContactPersonFirstName($merchantRegistrationFormDataTransfer->getContactPersonFirstName());
+        $merchantProfileTransfer->setContactPersonLastName($merchantRegistrationFormDataTransfer->getContactPersonLastName());
+        $merchantProfileTransfer->setContactPersonPhone($merchantRegistrationFormDataTransfer->getContactPersonPhone());
+        $merchantProfileTransfer->setContactPersonRole($merchantRegistrationFormDataTransfer->getContactPersonRole());
+        $merchantProfileTransfer->setContactPersonTitle($merchantRegistrationFormDataTransfer->getContactPersonTitle());
 
         $merchantProfileAddressTransfer = $this->getMerchantProfileAddressTransfer($merchantRegistrationFormDataTransfer);
         $merchantProfileTransfer->addAddress($merchantProfileAddressTransfer);
@@ -150,12 +150,12 @@ class MerchantRegistrationController extends AbstractController
         MerchantRegistrationFormDataTransfer $merchantRegistrationFormDataTransfer
     ): MerchantProfileAddressTransfer {
         $merchantProfileAddressTransfer = new MerchantProfileAddressTransfer();
-        $merchantProfileAddressTransfer->setEmail($merchantRegistrationFormDataTransfer->getemail());
-        $merchantProfileAddressTransfer->setAddress1($merchantRegistrationFormDataTransfer->getaddress1());
-        $merchantProfileAddressTransfer->setAddress2($merchantRegistrationFormDataTransfer->getaddress2());
-        $merchantProfileAddressTransfer->setCity($merchantRegistrationFormDataTransfer->getcity());
-        $merchantProfileAddressTransfer->setCountryName($merchantRegistrationFormDataTransfer->getiso2Code());
-        $merchantProfileAddressTransfer->setZipCode($merchantRegistrationFormDataTransfer->getzipCode());
+        $merchantProfileAddressTransfer->setEmail($merchantRegistrationFormDataTransfer->getEmail());
+        $merchantProfileAddressTransfer->setAddress1($merchantRegistrationFormDataTransfer->getAddress1());
+        $merchantProfileAddressTransfer->setAddress2($merchantRegistrationFormDataTransfer->getAddress2());
+        $merchantProfileAddressTransfer->setCity($merchantRegistrationFormDataTransfer->getCity());
+        $merchantProfileAddressTransfer->setCountryName($merchantRegistrationFormDataTransfer->getIso2Code());
+        $merchantProfileAddressTransfer->setZipCode($merchantRegistrationFormDataTransfer->getZipCode());
 
         return $merchantProfileAddressTransfer;
     }
