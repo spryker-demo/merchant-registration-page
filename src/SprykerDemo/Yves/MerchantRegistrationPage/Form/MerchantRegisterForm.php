@@ -256,14 +256,14 @@ class MerchantRegisterForm extends AbstractType
             'invalid_message' => 'validator.constraints.password.do_not_match',
             'required' => true,
             'first_options' => [
-                'label' => 'Temporary Password',
+                'label' => 'Password',
                 'attr' => [
                     'autocomplete' => 'off',
                     'password_complexity_indicator' => true,
                 ],
             ],
             'second_options' => [
-                'label' => 'Confirm Temporary Password',
+                'label' => 'Confirm Password',
                 'attr' => ['autocomplete' => 'off'],
             ],
             'constraints' => [
