@@ -7,9 +7,12 @@
 
 namespace SprykerDemo\Yves\MerchantRegistrationPage\Form\DataProvider;
 
+use ArrayObject;
 use Generated\Shared\Transfer\MerchantRegistrationFormDataTransfer;
+use Generated\Shared\Transfer\UrlTransfer;
 use Spryker\Shared\Kernel\Store;
 use SprykerDemo\Yves\MerchantRegistrationPage\Form\MerchantRegisterForm;
+use SprykerDemo\Yves\MerchantRegistrationPage\MerchanrRegistrationPageConfig;
 
 class MerchantRegisterFormDataProvider
 {
@@ -36,7 +39,7 @@ class MerchantRegisterFormDataProvider
      */
     public function getData(): MerchantRegistrationFormDataTransfer
     {
-        return new MerchantRegistrationFormDataTransfer();
+        return $this->setInitialUrlCollection(new MerchantRegistrationFormDataTransfer());
     }
 
     /**
@@ -47,6 +50,41 @@ class MerchantRegisterFormDataProvider
         return [
             MerchantRegisterForm::OPTION_COUNTRY_CHOICES => $this->getAvailableCountries(),
         ];
+    }
+
+    /**
+     * @param \Generated\Shared\Transfer\MerchantRegistrationFormDataTransfer $merchantTransfer
+     *
+     * @return \Generated\Shared\Transfer\MerchantRegistrationFormDataTransfer
+     */
+    protected function setInitialUrlCollection(MerchantRegistrationFormDataTransfer $merchantTransfer): MerchantRegistrationFormDataTransfer
+    {
+        $urlCollection = new ArrayObject();
+
+        foreach ($this->store->getLocales() as $locales) {
+            $urlCollection->append(
+                $this->setUrlPrefixToUrlTransfer($locales),
+            );
+        }
+        $merchantTransfer->setUrlCollection($urlCollection);
+
+        return $merchantTransfer;
+    }
+
+    /**
+     * @param string $locale
+     *
+     * @return \Generated\Shared\Transfer\UrlTransfer
+     */
+    protected function setUrlPrefixToUrlTransfer(string $locale): UrlTransfer
+    {
+        $urlTransfer = new UrlTransfer();
+        $urlTransfer->setLocaleName($locale);
+        $urlTransfer->setUrlPrefix(
+            $this->getLocalizedUrlPrefix($locale),
+        );
+
+        return $urlTransfer;
     }
 
     /**
@@ -61,5 +99,18 @@ class MerchantRegisterFormDataProvider
         }
 
         return $countries;
+    }
+
+    /**
+     * @param string $locale
+     *
+     * @return string
+     */
+    protected function getLocalizedUrlPrefix(string $locale): string
+    {
+        $localeNameParts = explode('_', $locale);
+        $languageCode = $localeNameParts[0];
+
+        return '/' . $languageCode . '/' . MerchanrRegistrationPageConfig::PREFIX_MERCHANT_URL . '/';
     }
 }
