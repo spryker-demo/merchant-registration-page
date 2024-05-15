@@ -25,7 +25,7 @@ class MerchantUrlCollectionDataTransformer implements DataTransformerInterface
         }
         foreach ($value as $urlTransfer) {
             $url = $urlTransfer->getUrl();
-            $url = preg_replace('#^' . $urlTransfer->getUrlPrefix() . '#i', '', $url);
+            $url = preg_replace('#^' . $urlTransfer->getUrlPrefix() . '#i', '', $url ?: '');
             $urlTransfer->setUrl($url);
             $merchantUrlCollection->append($urlTransfer);
         }
