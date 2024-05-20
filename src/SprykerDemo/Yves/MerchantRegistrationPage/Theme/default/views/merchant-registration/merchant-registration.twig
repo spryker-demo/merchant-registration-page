@@ -53,28 +53,30 @@
                                 {% for fieldName in companyFilds %}
 
                                     {% set field = attribute(data.form.children, fieldName) %}
-                                    {% if field == 'urlCollection' %}
-                                        {{ form_label(data.form.urlCollection) }}
+                                    {% if fieldName == 'urlCollection' %}
+                                        {% do data.form.urlCollection.setRendered %}
 
-                                        {% for localizedUrl in data.form.urlCollection %}
-                                            <div class="form-group {% if localizedUrl.url.vars.errors|length > 0 %}has-error{% endif %}">
-                                                {% if localizedUrl.vars.data.urlPrefix %}
-                                                    <div class="input-group m-b">
+                                        <div class="form__field">
+                                            {{ form_label(data.form.urlCollection) }}
+
+                                            {% for localizedUrl in data.form.urlCollection %}
+                                                <div class="form-group {% if localizedUrl.url.vars.errors|length > 0 %}has-error{% endif %}">
+                                                    {% if localizedUrl.vars.data.urlPrefix %}
+                                                        <div class="input-group m-b">
                                                         <span class="input-group-addon">
                                                             {{ localizedUrl.vars.data.urlPrefix }}
                                                         </span>
+                                                            {{ form_widget(localizedUrl.url, {'attr': {'class': 'text-input'}}) }}
+                                                        </div>
+                                                    {% else %}
                                                         {{ form_widget(localizedUrl.url) }}
-                                                    </div>
-                                                {% else %}
-                                                    {{ form_widget(localizedUrl.url) }}
-                                                {% endif %}
+                                                    {% endif %}
 
-                                                {{ form_widget(localizedUrl.fkLocale) }}
-                                                {{ form_errors(localizedUrl.url) }}
-                                            </div>
-                                        {% endfor %}
-
-                                        {% do data.form.urlCollection.setRendered %}
+                                                    {{ form_widget(localizedUrl.fkLocale) }}
+                                                    {{ form_errors(localizedUrl.url) }}
+                                                </div>
+                                            {% endfor %}
+                                        </div>
                                     {% endif %}
                                 {% if not field.isRendered %}
                                     {% set fieldLayoutClass = 'col col--sm-12' %}
@@ -84,7 +86,9 @@
                                     {% endif %}
 
                                 {% endif %}
+                                    {% if fieldName != 'urlCollection' %}
                                         {{ block('field') }}
+                                    {% endif %}
 
                                 {% endfor %}
                             </div>
