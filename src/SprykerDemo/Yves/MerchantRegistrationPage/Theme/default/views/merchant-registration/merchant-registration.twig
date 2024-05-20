@@ -56,16 +56,16 @@
                                     {% if fieldName == 'urlCollection' %}
                                         {% do data.form.urlCollection.setRendered %}
 
-                                        <div class="form__field">
+                                        <div class="form__field {{ data.layout.urlCollection }}">
                                             {{ form_label(data.form.urlCollection) }}
 
                                             {% for localizedUrl in data.form.urlCollection %}
                                                 <div class="form-group {% if localizedUrl.url.vars.errors|length > 0 %}has-error{% endif %}">
                                                     {% if localizedUrl.vars.data.urlPrefix %}
                                                         <div class="input-group m-b">
-                                                        <span class="input-group-addon">
-                                                            {{ localizedUrl.vars.data.urlPrefix }}
-                                                        </span>
+                                                            <span class="input-group-addon">
+                                                                {{ localizedUrl.vars.data.urlPrefix }}
+                                                            </span>
                                                             {{ form_widget(localizedUrl.url, {'attr': {'class': 'text-input'}}) }}
                                                         </div>
                                                     {% else %}
