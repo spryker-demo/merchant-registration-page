@@ -7,13 +7,9 @@
 
 namespace SprykerDemo\Yves\MerchantRegistrationPage\Form;
 
-use Generated\Shared\Transfer\UrlTransfer;
 use Spryker\Yves\Kernel\Form\AbstractType;
-use SprykerDemo\Yves\MerchantRegistrationPage\Form\MerchantUrlCollection\MerchantUrlCollectionFormType;
-use SprykerDemo\Yves\MerchantRegistrationPage\Form\Transformer\MerchantUrlCollectionDataTransformer;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
@@ -99,7 +95,7 @@ class MerchantRegisterForm extends AbstractType
     /**
      * @var string
      */
-    protected const FIELD_URL_COLLECTION = 'urlCollection';
+    protected const FIELD_URL = 'url';
 
     /**
      * @var string
@@ -189,7 +185,7 @@ class MerchantRegisterForm extends AbstractType
             ->addCityField($builder, $options)
             ->addIso2CodeField($builder, $options)
             ->addCompanyNameField($builder)
-            ->addUrlCollectionField($builder)
+            ->addUrlField($builder)
             ->addRegistrationNumberField($builder)
             ->addContactPersonTitleField($builder)
             ->addContactPersonFirstNameField($builder)
@@ -373,22 +369,12 @@ class MerchantRegisterForm extends AbstractType
      *
      * @return $this
      */
-    protected function addUrlCollectionField(FormBuilderInterface $builder)
+    protected function addUrlField(FormBuilderInterface $builder)
     {
-        $builder->add(static::FIELD_URL_COLLECTION, CollectionType::class, [
-            'entry_type' => MerchantUrlCollectionFormType::class,
-            'allow_add' => true,
+        $builder->add(static::FIELD_URL, TextType::class, [
             'label' => 'URL',
             'required' => true,
-            'allow_delete' => true,
-            'entry_options' => [
-                'label' => false,
-                'data_class' => UrlTransfer::class,
-            ],
         ]);
-
-        $builder->get(static::FIELD_URL_COLLECTION)
-            ->addModelTransformer(new MerchantUrlCollectionDataTransformer());
 
         return $this;
     }

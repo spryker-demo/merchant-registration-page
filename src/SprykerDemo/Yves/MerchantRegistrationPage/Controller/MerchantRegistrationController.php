@@ -180,7 +180,7 @@ class MerchantRegistrationController extends AbstractController
         $merchantTransfer->setMerchantProfile($merchantProfileTransfer);
         $merchantTransfer->setMerchantReference(uniqid('MER', true));
         $merchantTransfer->setPassword($merchantRegistrationFormDataTransfer->getPassword());
-        $merchantTransfer->setUrlCollection($merchantRegistrationFormDataTransfer->getUrlCollection());
+        $merchantTransfer->setUrl($merchantRegistrationFormDataTransfer->getUrl());
 
         return $merchantTransfer;
     }

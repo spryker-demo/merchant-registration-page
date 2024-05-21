@@ -15,13 +15,17 @@
         <property name='contactPersonRole' type="string"/>
         <property name='contactPersonPhone' type="string"/>
         <property name='email' type="string"/>
-        <property name="urlCollection" type="Url[]" singular="url"/>
+        <property name="url" type="string"/>
         <property name='password' type="string"/>
         <property name='acceptTerms' type="string"/>
     </transfer>
 
     <transfer name="MerchantCriteria">
         <property name="name" type="string"/>
+    </transfer>
+
+    <transfer name="Merchant">
+        <property name="url" type="string"/>
     </transfer>
 
 </transfers>

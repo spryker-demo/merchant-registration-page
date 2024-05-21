@@ -26,7 +26,7 @@
                         zip_code: 'col col--sm-6 col--lg-4',
                         city: 'col col--sm-6 col--lg-4',
                         iso2_code: 'col col--sm-6 col--lg-4',
-                        urlCollection: 'col col--sm-12 col--md-8 col--lg-8',
+                        url: 'col col--sm-12 col--md-8 col--lg-8',
                         contact_person_title: 'col col--sm-6 col--lg-4',
                         contact_person_first_name: 'col col--sm-6 col--lg-4',
                         contact_person_last_name: 'col col--sm-6 col--lg-4',
@@ -49,35 +49,10 @@
                                     <h2 class="title--h3">{{ 'merchant.register-page.company-title' | trans }}</h2>
                                     <p>{{ 'merchant.register-page.company-text' | trans }}</p>
                                 </div>
-                                {% set companyFilds = ['company_name', 'registration_number', 'address1', 'address2', 'zip_code', 'city', 'iso2_code', 'urlCollection'] %}
+                                {% set companyFilds = ['company_name', 'registration_number', 'address1', 'address2', 'zip_code', 'city', 'iso2_code', 'url'] %}
                                 {% for fieldName in companyFilds %}
 
                                     {% set field = attribute(data.form.children, fieldName) %}
-                                    {% if fieldName == 'urlCollection' %}
-                                        {% do data.form.urlCollection.setRendered %}
-
-                                        <div class="form__field {{ data.layout.urlCollection }}">
-                                            {{ form_label(data.form.urlCollection) }}
-
-                                            {% for localizedUrl in data.form.urlCollection %}
-                                                <div class="form-group {% if localizedUrl.url.vars.errors|length > 0 %}has-error{% endif %}">
-                                                    {% if localizedUrl.vars.data.urlPrefix %}
-                                                        <div class="input-group m-b">
-                                                            <span class="input-group-addon">
-                                                                {{ localizedUrl.vars.data.urlPrefix }}
-                                                            </span>
-                                                            {{ form_widget(localizedUrl.url, {'attr': {'class': 'text-input'}}) }}
-                                                        </div>
-                                                    {% else %}
-                                                        {{ form_widget(localizedUrl.url) }}
-                                                    {% endif %}
-
-                                                    {{ form_widget(localizedUrl.fkLocale) }}
-                                                    {{ form_errors(localizedUrl.url) }}
-                                                </div>
-                                            {% endfor %}
-                                        </div>
-                                    {% endif %}
                                 {% if not field.isRendered %}
                                     {% set fieldLayoutClass = 'col col--sm-12' %}
 
@@ -86,9 +61,7 @@
                                     {% endif %}
 
                                 {% endif %}
-                                    {% if fieldName != 'urlCollection' %}
-                                        {{ block('field') }}
-                                    {% endif %}
+                                    {{ block('field') }}
 
                                 {% endfor %}
                             </div>
