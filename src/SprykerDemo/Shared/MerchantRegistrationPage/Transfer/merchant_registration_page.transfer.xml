@@ -15,7 +15,7 @@
         <property name='contactPersonRole' type="string"/>
         <property name='contactPersonPhone' type="string"/>
         <property name='email' type="string"/>
-        <property name="url" type="string"/>
+        <property name="url" type="Url"/>
         <property name='password' type="string"/>
         <property name='acceptTerms' type="string"/>
     </transfer>
