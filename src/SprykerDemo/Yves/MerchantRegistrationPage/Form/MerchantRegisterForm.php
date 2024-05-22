@@ -9,6 +9,7 @@ namespace SprykerDemo\Yves\MerchantRegistrationPage\Form;
 
 use Generated\Shared\Transfer\UrlTransfer;
 use Spryker\Yves\Kernel\Form\AbstractType;
+use SprykerDemo\Yves\MerchantRegistrationPage\Form\MerchantUrl\MerchantUrlFormType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
@@ -372,7 +373,7 @@ class MerchantRegisterForm extends AbstractType
      */
     protected function addUrlField(FormBuilderInterface $builder)
     {
-        $builder->add(static::FIELD_URL, TextType::class, [
+        $builder->add(static::FIELD_URL, MerchantUrlFormType::class, [
             'label' => 'URL',
             'required' => true,
             'data_class' => UrlTransfer::class,

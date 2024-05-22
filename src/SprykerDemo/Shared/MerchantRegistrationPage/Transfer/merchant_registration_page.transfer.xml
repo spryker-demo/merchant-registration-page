@@ -25,7 +25,7 @@
     </transfer>
 
     <transfer name="Merchant">
-        <property name="url" type="string"/>
+        <property name="url" type="Url"/>
     </transfer>
 
 </transfers>
