@@ -49,21 +49,43 @@
                                     <h2 class="title--h3">{{ 'merchant.register-page.company-title' | trans }}</h2>
                                     <p>{{ 'merchant.register-page.company-text' | trans }}</p>
                                 </div>
-                                {% set companyFilds = ['company_name', 'registration_number', 'address1', 'address2', 'zip_code', 'city', 'iso2_code', 'url'] %}
-                                {% for fieldName in companyFilds %}
+                                {% set companyFields = ['company_name', 'registration_number', 'address1', 'address2', 'zip_code', 'city', 'iso2_code', 'url'] %}
+                                {% for fieldName in companyFields %}
 
                                     {% set field = attribute(data.form.children, fieldName) %}
-                                {% if not field.isRendered %}
-                                    {% set fieldLayoutClass = 'col col--sm-12' %}
-
-                                    {% if fieldName in data.layout | keys %}
-                                        {% set fieldLayoutClass = attribute(data.layout, fieldName) %}
+                                    {% if fieldName == 'url' %}
+                                        {% do data.form.url.setRendered %}
+                                        <div class="form__field">
+                                            {{ form_label(data.form.url) }}
+                                                <div class="form-group {% if data.form.url.vars.errors|length > 0 %}has-error{% endif %}">
+                                                    {% if data.form.url.vars.data.urlPrefix %}
+                                                        <div class="input-group m-b">
+                                                        <span class="input-group-addon">
+                                                            {{ data.form.url.vars.data.urlPrefix }}
+                                                        </span>
+                                                            {{ form_widget(data.form.url, {'attr': {'class': 'text-input'}}) }}
+                                                        </div>
+                                                    {% else %}
+                                                        {{ form_widget(data.form.url) }}
+                                                    {% endif %}
+                                                </div>
+                                        </div>
                                     {% endif %}
 
-                                {% endif %}
-                                    {{ block('field') }}
+                                    {% if not field.isRendered %}
+                                        {% set fieldLayoutClass = 'col col--sm-12' %}
+
+                                        {% if fieldName in data.layout | keys %}
+                                            {% set fieldLayoutClass = attribute(data.layout, fieldName) %}
+                                        {% endif %}
+
+                                    {% endif %}
+                                    {% if fieldName != 'url' %}
+                                        {{ block('field') }}
+                                    {% endif %}
 
                                 {% endfor %}
+                                </div>
                             </div>
                         </div>
                     </div>

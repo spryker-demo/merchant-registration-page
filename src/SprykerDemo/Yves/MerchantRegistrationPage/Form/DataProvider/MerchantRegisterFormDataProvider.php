@@ -8,8 +8,10 @@
 namespace SprykerDemo\Yves\MerchantRegistrationPage\Form\DataProvider;
 
 use Generated\Shared\Transfer\MerchantRegistrationFormDataTransfer;
+use Generated\Shared\Transfer\UrlTransfer;
 use Spryker\Shared\Kernel\Store;
 use SprykerDemo\Yves\MerchantRegistrationPage\Form\MerchantRegisterForm;
+use SprykerDemo\Yves\MerchantRegistrationPage\MerchantRegistrationPageConfig;
 
 class MerchantRegisterFormDataProvider
 {
@@ -36,7 +38,7 @@ class MerchantRegisterFormDataProvider
      */
     public function getData(): MerchantRegistrationFormDataTransfer
     {
-        return new MerchantRegistrationFormDataTransfer();
+        return $this->setInitialUrlPrefix(new MerchantRegistrationFormDataTransfer());
     }
 
     /**
@@ -61,5 +63,17 @@ class MerchantRegisterFormDataProvider
         }
 
         return $countries;
+    }
+
+    /**
+     * @param \Generated\Shared\Transfer\MerchantRegistrationFormDataTransfer $merchantRegistrationFormDataTransfer
+     *
+     * @return \Generated\Shared\Transfer\MerchantRegistrationFormDataTransfer
+     */
+    protected function setInitialUrlPrefix(MerchantRegistrationFormDataTransfer $merchantRegistrationFormDataTransfer): MerchantRegistrationFormDataTransfer
+    {
+        $merchantRegistrationFormDataTransfer->setUrl((new UrlTransfer())->setUrlPrefix('/' . MerchantRegistrationPageConfig::PREFIX_MERCHANT_URL . '/'));
+
+        return $merchantRegistrationFormDataTransfer;
     }
 }
