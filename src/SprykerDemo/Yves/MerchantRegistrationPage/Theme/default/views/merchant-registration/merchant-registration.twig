@@ -60,15 +60,17 @@
                                                 <div class="form-group {% if data.form.url.vars.errors|length > 0 %}has-error{% endif %}">
                                                     {% if data.form.url.vars.data.urlPrefix %}
                                                         <div class="input-group m-b">
-                                                        <span class="input-group-addon">
-                                                            {{ data.form.url.vars.data.urlPrefix }}
-                                                        </span>
+                                                            <span class="input-group-addon">
+                                                                {{ data.form.url.vars.data.urlPrefix }}
+                                                            </span>
                                                             {{ form_widget(data.form.url.url, {'attr': {'class': 'text-input'}}) }}
                                                         </div>
                                                     {% else %}
                                                         {{ form_widget(data.form.url.url) }}
                                                     {% endif %}
                                                 </div>
+                                            {{ form_errors(data.form.url.url) }}
+
                                         </div>
                                     {% endif %}
 

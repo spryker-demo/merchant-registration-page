@@ -375,6 +375,9 @@ class MerchantRegisterForm extends AbstractType
     {
         $builder->add(static::FIELD_URL, MerchantUrlFormType::class, [
             'label' => 'URL',
+            'constraints' => [
+                $this->createNotBlankConstraint(),
+            ],
             'required' => true,
             'data_class' => UrlTransfer::class,
         ]);
