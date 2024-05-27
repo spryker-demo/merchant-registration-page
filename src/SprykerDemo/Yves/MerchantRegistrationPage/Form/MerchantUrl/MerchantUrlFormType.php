@@ -74,6 +74,7 @@ class MerchantUrlFormType extends AbstractType
     protected function addUrlField(FormBuilderInterface $builder)
     {
         $builder->add(static::FIELD_URL, TextType::class, [
+            'label' => 'URL',
             'required' => true,
             'constraints' => [
                 new NotBlank(),

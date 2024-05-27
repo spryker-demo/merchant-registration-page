@@ -56,7 +56,7 @@
                                     {% if fieldName == 'url' %}
                                         {% do data.form.url.setRendered %}
                                         <div class="form__field">
-                                            {{ form_label(data.form.url) }}
+                                            {{ form_label(data.form.url.url) }}
                                                 <div class="form-group {% if data.form.url.vars.errors|length > 0 %}has-error{% endif %}">
                                                     {% if data.form.url.vars.data.urlPrefix %}
                                                         <div class="input-group m-b">
