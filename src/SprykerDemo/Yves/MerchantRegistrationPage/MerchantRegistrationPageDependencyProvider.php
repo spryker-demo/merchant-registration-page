@@ -7,17 +7,11 @@
 
 namespace SprykerDemo\Yves\MerchantRegistrationPage;
 
-use Spryker\Shared\Kernel\Store;
 use Spryker\Yves\Kernel\AbstractBundleDependencyProvider;
 use Spryker\Yves\Kernel\Container;
 
 class MerchantRegistrationPageDependencyProvider extends AbstractBundleDependencyProvider
 {
-    /**
-     * @var string
-     */
-    public const STORE = 'STORE';
-
     /**
      * @var string
      */
@@ -36,23 +30,8 @@ class MerchantRegistrationPageDependencyProvider extends AbstractBundleDependenc
     public function provideDependencies(Container $container): Container
     {
         $container = parent::provideDependencies($container);
-        $container = $this->addStore($container);
         $container = $this->addStoreClient($container);
         $container = $this->addMerchantRegistrationClient($container);
-
-        return $container;
-    }
-
-    /**
-     * @param \Spryker\Yves\Kernel\Container $container
-     *
-     * @return \Spryker\Yves\Kernel\Container
-     */
-    protected function addStore(Container $container): Container
-    {
-        $container->set(static::STORE, function () {
-            return Store::getInstance();
-        });
 
         return $container;
     }

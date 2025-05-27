@@ -9,7 +9,7 @@ namespace SprykerDemo\Yves\MerchantRegistrationPage\Form\DataProvider;
 
 use Generated\Shared\Transfer\MerchantRegistrationFormDataTransfer;
 use Generated\Shared\Transfer\UrlTransfer;
-use Spryker\Shared\Kernel\Store;
+use Spryker\Client\Store\StoreClientInterface;
 use SprykerDemo\Yves\MerchantRegistrationPage\Form\MerchantRegisterForm;
 use SprykerDemo\Yves\MerchantRegistrationPage\MerchantRegistrationPageConfig;
 
@@ -21,16 +21,16 @@ class MerchantRegisterFormDataProvider
     public const COUNTRY_GLOSSARY_PREFIX = 'countries.iso.';
 
     /**
-     * @var \Spryker\Shared\Kernel\Store
+     * @var \Spryker\Client\Store\StoreClientInterface
      */
-    protected $store;
+    protected StoreClientInterface $storeClient;
 
     /**
-     * @param \Spryker\Shared\Kernel\Store $store
+     * @param \Spryker\Client\Store\StoreClientInterface $storeClient
      */
-    public function __construct(Store $store)
+    public function __construct(StoreClientInterface $storeClient)
     {
-        $this->store = $store;
+        $this->storeClient = $storeClient;
     }
 
     /**
@@ -58,7 +58,7 @@ class MerchantRegisterFormDataProvider
     {
         $countries = [];
 
-        foreach ($this->store->getCountries() as $iso2Code) {
+        foreach ($this->storeClient->getCurrentStore()->getCountries() as $iso2Code) {
             $countries[$iso2Code] = static::COUNTRY_GLOSSARY_PREFIX . $iso2Code;
         }
 
