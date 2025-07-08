@@ -8,8 +8,8 @@
 namespace SprykerDemo\Yves\MerchantRegistrationPage\Form;
 
 use Generated\Shared\Transfer\MerchantRegistrationFormDataTransfer;
+use Spryker\Client\Store\StoreClientInterface;
 use Spryker\Shared\Application\ApplicationConstants;
-use Spryker\Shared\Kernel\Store;
 use Spryker\Yves\Kernel\AbstractFactory;
 use SprykerDemo\Yves\MerchantRegistrationPage\Form\DataProvider\MerchantRegisterFormDataProvider;
 use SprykerDemo\Yves\MerchantRegistrationPage\MerchantRegistrationPageDependencyProvider;
@@ -42,14 +42,14 @@ class FormFactory extends AbstractFactory
      */
     public function createMerchantRegisterFormDataProvider(): MerchantRegisterFormDataProvider
     {
-        return new MerchantRegisterFormDataProvider($this->getStore());
+        return new MerchantRegisterFormDataProvider($this->getStoreClient());
     }
 
     /**
-     * @return \Spryker\Shared\Kernel\Store
+     * @return \Spryker\Client\Store\StoreClientInterface
      */
-    public function getStore(): Store
+    public function getStoreClient(): StoreClientInterface
     {
-        return $this->getProvidedDependency(MerchantRegistrationPageDependencyProvider::STORE);
+        return $this->getProvidedDependency(MerchantRegistrationPageDependencyProvider::STORE_CLIENT);
     }
 }
